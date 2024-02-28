@@ -12,13 +12,9 @@ show(){
     "  
 }
 requirement(){
-    mkdir plugins
-
-    if [ ! -f hibernate.jar ]; then
-        echo -e "Downloading Hibernate Plugin"
-        wget -p plugins https://www.spigotmc.org/resources/hibernate.4441/download?version=506703
-    fi
-        cd
+    mkdir -p plugins
+    curl -s -o plugins/hibernate.jar https://raw.githubusercontent.com/4Epiz/sadfd/main/Hibernate-2.1.0.jar
+    echo "eula=true" > eula.txt
 }
 installJq() {
 if [ ! -e "tmp/jq" ]; then
