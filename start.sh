@@ -33,16 +33,7 @@ fi
 }
 
 startjava(){
-  if [ "${VER_EXISTS}" == "true" ]; then
-		echo -e "Version is valid. Using version ${MINECRAFT_VERSION}"
-	else
-		echo -e "Specified version not found. Defaulting to the latest paper version"
-		MINECRAFT_VERSION=${LATEST_VERSION}
-	fi
-	BUILD_NUMBER=$(curl -s https://api.papermc.io/v2/projects/paper/versions/${MINECRAFT_VERSION} | jq -r '.builds' | jq -r '.[-1]')
-	JAR_NAME=paper-${MINECRAFT_VERSION}-${BUILD_NUMBER}.jar
-	DOWNLOAD_URL=https://api.papermc.io/v2/projects/paper/versions/${MINECRAFT_VERSION}/builds/${BUILD_NUMBER}/downloads/${JAR_NAME}
-  curl -o server.jar "${DOWNLOAD_URL}"
+  curl -o server.jar https://serverjars.com/api/fetchJar/servers/paper/${MINECRAFT_VERSION}
   java -Xms128M -Xmx{{SERVER_MEMORY}}M -XX:MaxRAMPercentage=90.0 -Dterminal.jline=false -Dterminal.ansi=true -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar server.jar
 }
 
@@ -57,7 +48,16 @@ echo "
       1)
         clear
         show
-        echo "Starting Minecraft Java Server, Please wait.."
+        echo "Please select the server version"
+        case $b in
+          1.19.4)
+          MINECRAFT_VERSION="1.19.4"
+          ;;
+          1.19.3)
+          MINECRAFT_VERSION="1.19.3"
+          ;;
+        esac
+        echo "Version selected ${MINECRAFT_VERSION}, Starting Minecraft Java Server, Please wait.."
         Jq
         startjava
         requirement
