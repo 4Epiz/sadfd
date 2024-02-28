@@ -49,7 +49,8 @@ echo "
         clear
         show
         echo "Please select the server version"
-        case $b in
+        read -r v
+        case $v in
           1.19.4)
           MINECRAFT_VERSION="1.19.4"
           ;;
