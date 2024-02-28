@@ -51,8 +51,30 @@ echo "
         show
         echo "
               Please select the server version
-              1.19.4            
+              1.19.4
               1.19.3
+              1.19.2
+              1.19.1
+              1.19
+              1.18.2
+              1.17.1
+              1.17
+              1.16.5
+              1.16.4
+              1.16.3
+              1.16.2
+              1.16.1
+              1.15.2
+              1.15.1
+              1.15
+              1.14.4
+              1.14.3
+              1.14.2
+              1.14.1
+              1.14
+              1.13.2
+              1.13.1
+              1.13
             "
         read -r v
         case $v in
@@ -62,15 +84,16 @@ echo "
           1.19.3)
           MINECRAFT_VERSION="1.19.3"
           ;;
+          1.8.9)
+          MINECRAFT_VERSION="1.8.9"
+          ;;
         esac
         echo "Version selected ${MINECRAFT_VERSION}, Starting Minecraft Java Server, Please wait.."
-        Jq
         startjava
         requirement
         ;;
       2)
       echo "Starting Minecraft Proxy Server, Please wait.."
-      Jq
       startproxy
       ;;
     esac
