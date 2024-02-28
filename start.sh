@@ -13,10 +13,10 @@ show(){
 }
 requirement(){
     mkdir plugins
-    cd plugins
+
     if [ ! -f hibernate.jar ]; then
         echo -e "Downloading Hibernate Plugin"
-        wget https://www.spigotmc.org/resources/hibernate.4441/download?version=506703
+        wget -p plugins https://www.spigotmc.org/resources/hibernate.4441/download?version=506703
     fi
         cd
 }
