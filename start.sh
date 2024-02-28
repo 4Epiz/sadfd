@@ -48,7 +48,11 @@ echo "
       1)
         clear
         show
-        echo "Please select the server version"
+        echo "
+              Please select the server version
+              1.19.4            
+              1.19.3
+            "
         read -r v
         case $v in
           1.19.4)
